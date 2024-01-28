@@ -36,6 +36,24 @@ h2 {
     border-radius: 4px;
 }
 
+.signup-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.signup-link p {
+    margin: 0;
+}
+
+.signup-link a {
+    color: #5f9ea0;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
 button {
     width: 100%;
     padding: 10px;
@@ -48,4 +66,90 @@ button {
 
 button:hover {
     background-color: #528b8b;
+}
+
+/*signup css*/
+.signup-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    width: 100%;
+    margin: auto; /* 중앙 정렬 */
+}
+
+.signup-container h2 {
+    text-align: center;
+    color: #333;
+}
+
+.signup-container .input-group {
+    margin-bottom: 15px;
+}
+
+.signup-container .input-group label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.signup-container .input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.signup-container button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: #5f9ea0;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.signup-container button:hover {
+    background-color: #528b8b;
+}
+
+/* 메인 페이지 스타일링 */
+.main-header {
+    background-color: white;
+    border-bottom: 1px solid #dbdbdb;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-navigation .nav-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.main-navigation .nav-items a {
+    text-decoration: none;
+    margin: 0 10px;
+    color: #262626;
+    font-weight: bold;
+}
+
+.main-content {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #dbdbdb;
+    border-radius: 10px;
+}
+
+.main-footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+    border-top: 1px solid #dbdbdb;
 }

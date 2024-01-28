@@ -6,8 +6,11 @@ import com.study.sns_study.util.PasswordEncoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.logging.Logger;
+
 @Service
 public class UserServiceImpl implements UserService {
+
     @Autowired
     private UserRepository userRepository;
 
@@ -22,11 +25,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User validateUser(String username, String password) {
+
         //사용자 인증
         User user = userRepository.findByUsername(username);
+//        System.out.println(user.toString());
         if (user != null) {
             String encodedPassword=PasswordEncoder.encodePassword(password);
             if(encodedPassword.equals(user.getPassword())){
+
                 return user;
             }
         }

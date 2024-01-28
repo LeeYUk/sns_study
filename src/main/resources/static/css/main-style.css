@@ -1,0 +1,88 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #fafafa;
+}
+
+.container {
+    max-width: 935px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 헤더 스타일 */
+.main-header {
+    background-color: white;
+    border-bottom: 1px solid #dbdbdb;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    float: left;
+    font-family: 'Lobster', cursive;
+    color: #262626;
+    margin-left: 20px;
+}
+
+.main-nav {
+    float: right;
+    margin-right: 20px;
+}
+
+.nav-item {
+    text-decoration: none;
+    margin-left: 20px;
+    color: #262626;
+    font-weight: bold;
+    display: inline-block;
+}
+
+/* 메인 콘텐츠 스타일 */
+.main-content {
+    margin-top: 77px; /* 헤더 높이만큼 위쪽 여백을 줍니다 */
+}
+
+.post {
+    background-color: white;
+    border: 1px solid #dbdbdb;
+    margin-bottom: 24px;
+    border-radius: 3px;
+}
+
+.post-image {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.post-content {
+    padding: 15px;
+}
+
+.post-title {
+    margin: 0;
+    color: #262626;
+    font-weight: bold;
+}
+
+.post-description {
+    color: #262626;
+}
+
+/* 푸터 스타일 */
+.main-footer {
+    background-color: white;
+    border-top: 1px solid #dbdbdb;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    left:50%;
+    width: 100%;
+    bottom: 0;
+    z-index: 1000;
+    transform: translateX(-50%);
+}

@@ -17,5 +17,4 @@ public class ExamController {
         return "login";
     }
 
-
 }
