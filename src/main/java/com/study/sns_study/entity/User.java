@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.List;
+
 @Entity
 @Table(name="user")
 @Getter
@@ -27,4 +29,7 @@ public class User {
 
     @Column(name="email",unique = true)
     private String email;
+
+    @OneToMany(mappedBy = "user" ,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Post> posts;
 }

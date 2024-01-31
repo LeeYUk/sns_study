@@ -5,12 +5,11 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>main page</title>
+    <title>post page</title>
     <link rel="stylesheet" href="/css/main-style.css?after" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-
 
 <header class="main-header">
     <div class="container">
@@ -24,30 +23,20 @@
     </div>
 </header>
 
-<script th:inline="javascript"> <!-- 게시글 작성완료시 뜨는 알림창 -->
-    /*<![CDATA[*/
-    var successMessage = /*[[${successMessage}]]*/ 'default';
-    if(successMessage && successMessage !== 'default') {
-        alert(successMessage);
-    }
-    /*]]>*/
-</script>
-
 <main class="main-content container">
-    <!-- 콘텐츠 섹션: 사용자 게시물이나 피드 -->
-    <div class="post">
-        <img src="path-to-image" alt="User Post" class="post-image">
-        <div class="post-content">
-            <h2 class="post-title">Post Title</h2>
-            <p class="post-description">이곳은 게시글을 표기하는곳.</p>
-            <!-- 여기에 더 많은 게시글 내용을 추가할 수 있음-->
-        </div>
-    </div>
-    <!-- 추가 게시물을 반복해서 표시 -->
+    <form action="/createPost" method="post" enctype="multipart/form-data">
+        <input type="text" name="title" placeholder="제목">
+        <textarea name="content" placeholder="내용"></textarea>
+        <input type="file" name="image" accept="image/*">
+        <button type="submit">게시글 작성</button>
+    </form>
 </main>
 
 <footer class="main-footer container">
     <p>Copyright © 2023 My Website</p>
 </footer>
+
 </body>
+
+
 </html>
