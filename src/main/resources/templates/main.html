@@ -8,9 +8,18 @@
     <title>main page</title>
     <link rel="stylesheet" href="/css/main-style.css?after" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
-<body>
+<script th:inline="javascript"> <!-- 게시글 작성완료시 뜨는 알림창 -->
+    /*<![CDATA[*/
+    var successMessage = /*[[${successMessage}]]*/ 'default';
+    if(successMessage && successMessage !== 'default') {
+        alert(successMessage);
+    }
+    /*]]>*/
+</script>
 
+<body>
 
 <header class="main-header">
     <div class="container">
@@ -24,25 +33,49 @@
     </div>
 </header>
 
-<script th:inline="javascript"> <!-- 게시글 작성완료시 뜨는 알림창 -->
-    /*<![CDATA[*/
-    var successMessage = /*[[${successMessage}]]*/ 'default';
-    if(successMessage && successMessage !== 'default') {
-        alert(successMessage);
-    }
-    /*]]>*/
-</script>
+
 
 <main class="main-content container">
     <!-- 콘텐츠 섹션: 사용자 게시물이나 피드 -->
-    <div class="post">
-        <img src="path-to-image" alt="User Post" class="post-image">
-        <div class="post-content">
-            <h2 class="post-title">Post Title</h2>
-            <p class="post-description">이곳은 게시글을 표기하는곳.</p>
-            <!-- 여기에 더 많은 게시글 내용을 추가할 수 있음-->
-        </div>
+    <div id="posts-container" class="posts-grid">
+        <!-- 게시글이 동적으로 로드될 위치 -->
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: '/api/posts', // 서버의 게시글 데이터 API 경로
+                type: 'GET',
+                dataType: 'json',
+                success: function(posts) {
+                    posts.forEach(function(post) {
+                        var postImageHtml = '';
+
+                        // 이미지 경로가 있는 경우에만 이미지 태그를 추가
+                        if (post.imagePath && post.imagePath.trim() !== '') {
+                            var correctedPath = post.imagePath.replace(/\\/g, '/');
+                            var encodedPath = encodeURIComponent(correctedPath);
+                            postImageHtml = '<img src="' + post.imagePath + '" alt="img" class="post-image">';
+                        }
+
+                        // 게시글 HTML 구조
+                        var postHtml = '<div class="post">' +
+                            postImageHtml +
+                            '<div class="post-content">' +
+                            '<h2 class="post-title">' + post.title + '</h2>' +
+                            '<p class="post-description">' + post.content + '</p>' +
+                            '</div></div>';
+
+                        // 게시글을 컨테이너에 추가
+                        $('#posts-container').append(postHtml);
+                    });
+                },
+                error: function(error) {
+                    console.log("Error loading posts: ", error);
+                }
+            });
+        });
+    </script>
     <!-- 추가 게시물을 반복해서 표시 -->
 </main>
 

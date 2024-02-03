@@ -75,15 +75,7 @@ public class PostController {
         return "redirect:/main"; //저장 후 메인 페이지로
     }
 
-//    @GetMapping("/successMessage")
-//    public String successMessage(@ModelAttribute("successMessage") String successMessage, Model model) {
-//
-//        System.out.println("메시지" + successMessage);
-//
-//        model.addAttribute("successMessage", successMessage);
-//
-//        return successMessage;
-//    }
+
 
     private String saveImage(MultipartFile file) throws IOException { //파일을 저장하는 메소드
         String filename = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();
