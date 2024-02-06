@@ -33,33 +33,33 @@ public class PostController {
     }
 
 
-    private static String UPLOAD_DIR = "uploads/"; //파일 저장 위치
+    private static String UPLOAD_DIR= "uploads/"; //파일 저장 경로를 지정
 
     static {
         try {
             Path uploadPath = Paths.get(UPLOAD_DIR);
-            if (!Files.exists(uploadPath)) { //해당 위치에 uploads폴더가 없으면
-                Files.createDirectories(uploadPath); //상위 디렉터리에 uploads폴더생성
+            if (!Files.exists(uploadPath)) { //해당 경로에 uploads폴더가 없으면
+                Files.createDirectories(uploadPath); //상위 경로에 uploads폴더생성
             }
         } catch (IOException e) {
             e.printStackTrace();
-            //디렉터리 생성 실패 처리
+            //경로 생성 실패예외 처리
         }
     }
 
     @PostMapping("/createPost")
     public String createPost(@RequestParam(name = "title") String title, @RequestParam(name = "content") String content,
                              @RequestParam(name = "image") MultipartFile image, RedirectAttributes redirectAttributes) {
-        //게시글 처리 로직
+        //게시글 처리 메소드
 
-        String filename = null;
+        String filename = null;//변수 filename 초기화
 
-        if (!image.isEmpty()) {
+        if (!image.isEmpty()) { //업로드하는 파일이 존재하는지 검사
             try {
-                filename = saveImage(image);//이미지 저장 메소드 호출
+                filename = saveImage(image);// 파일이 존재한다면 저장 메소드 호출
             } catch (IOException e) {
                 e.printStackTrace();
-                // 파일 저장 실패 처리
+                // 파일 저장 실패 예외처리
                 redirectAttributes.addFlashAttribute("message", "이미지 업로드 실패");
             }
         }
@@ -77,10 +77,10 @@ public class PostController {
 
 
 
-    private String saveImage(MultipartFile file) throws IOException { //파일을 저장하는 메소드
-        String filename = UUID.randomUUID().toString() + "-" + file.getOriginalFilename();
-        Path savePath = Paths.get(UPLOAD_DIR + filename);
-        Files.copy(file.getInputStream(), savePath, StandardCopyOption.REPLACE_EXISTING);
-        return savePath.toString();
+    private String saveImage(MultipartFile file) throws IOException {  //파일을 저장하는 메소드
+        String filename = UUID.randomUUID().toString() + "-" + file.getOriginalFilename(); // 파일이름과 UUID를 사용해 고유식별가능한 id를 만듬
+        Path savePath = Paths.get(UPLOAD_DIR + filename); //지정된 파일경로 UPLOAD_DIR에 파일이름저장함
+        Files.copy(file.getInputStream(), savePath, StandardCopyOption.REPLACE_EXISTING); //StandardCopyOption.REPLACE_EXISTING는 동일이름 파일이 존재할경우 덮어쓰기함
+        return savePath.toString();//저장된 파일 이름을 문자열로 반환함
     }
 }

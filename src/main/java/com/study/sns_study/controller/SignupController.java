@@ -20,8 +20,8 @@ public class SignupController {
     }
 
     @PostMapping("/signup")
-    public String signupForm(@ModelAttribute User user){
+    public String signupForm(@ModelAttribute User user){ //회원가입 처리 메소드 회원가입 품을 통해 post할때 해당 메소드가 사용
         userService.registerUser(user);
-        return "redirect:/login";
+        return "redirect:/login";//회원가입 후 로그인페이지로 이동
     }
 }

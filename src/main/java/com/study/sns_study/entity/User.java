@@ -30,6 +30,6 @@ public class User {
     @Column(name="email",unique = true)
     private String email;
 
-    @OneToMany(mappedBy = "user" ,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user" ,cascade = CascadeType.ALL, fetch = FetchType.LAZY)//이 어노테이션은 User와 Post 엔티티 간의 일대다 관계를 정의함
     private List<Post> posts;
 }

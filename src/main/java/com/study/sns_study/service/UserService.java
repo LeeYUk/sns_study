@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserService {
 
-    void registerUser(User user);
-    User validateUser(String username, String password);
+    void registerUser(User user); //회원 등롤
+    User validateUser(String username, String password);//회원 인증
 
 }
